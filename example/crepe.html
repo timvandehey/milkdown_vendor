@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌌 Milkdown Crepe - Premium No-Build ESM Editor</title>
+  <meta name="description" content="A gorgeous, out-of-the-box WYSIWYG editor using Milkdown Crepe ESM pre-bundles and CSS variable theme systems.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Crepe Core Stylesheet (layout) -->
+  <link rel="stylesheet" href="/dist/theme/common/style.css">
+  
+  <!-- Crepe Theme Stylesheet (custom colors, mapped dynamically) -->
+  <link id="crepe-theme-link" rel="stylesheet" href="/dist/theme/crepe-dark/style.css">
+  
+  <!-- Dashboard Styling -->
+  <link rel="stylesheet" href="/example/crepe.css">
+
+  <!-- Import Map -->
+  <script type="importmap">
+  {
+    "imports": {
+      "@milkdown/crepe": "/dist/milkdown_crepe.js"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header>
+    <div class="brand">
+      <div class="logo-glow">C</div>
+      <h1>Crepe Editor</h1>
+      <nav class="nav-links">
+        <a href="/example/index.html">Milkdown Kit</a>
+        <a href="/example/crepe.html" class="active">Crepe WYSIWYG</a>
+      </nav>
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        <span>Crepe Live Sync</span>
+      </div>
+    </div>
+    
+    <div class="actions">
+      <!-- Theme Switcher Selector -->
+      <div class="select-wrapper">
+        <select id="theme-selector">
+          <option value="/dist/theme/crepe-dark/style.css" selected>Classic (Dark)</option>
+          <option value="/dist/theme/crepe/style.css">Classic (Light)</option>
+          <option value="/dist/theme/nord-dark/style.css">Nord (Dark)</option>
+          <option value="/dist/theme/nord/style.css">Nord (Light)</option>
+          <option value="/dist/theme/frame-dark/style.css">Frame (Dark)</option>
+          <option value="/dist/theme/frame/style.css">Frame (Light)</option>
+        </select>
+        <span class="select-arrow">▼</span>
+      </div>
+
+      <button class="btn" id="toggle-preview" title="Toggle Source Code">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+        <span>Raw Source</span>
+      </button>
+
+      <button class="btn btn-primary" id="export-md">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+        <span>Export Markdown</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Dashboard Main Container -->
+  <div class="dashboard-container">
+    
+    <!-- Center Workspace -->
+    <main class="editor-workspace">
+      <div class="editor-card" id="crepe-container"></div>
+    </main>
+
+    <!-- Right Panel: Raw Source Sync -->
+    <section class="preview-panel" id="preview-panel">
+      <div class="preview-header">
+        <h2 class="preview-title">Markdown Source</h2>
+        <button class="btn" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" id="copy-source">Copy</button>
+      </div>
+      <div class="preview-body">
+        <textarea class="markdown-textarea" id="markdown-source" readonly></textarea>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer Status Bar -->
+  <footer>
+    <div>Powered by <span style="color: #10b981; font-weight: 600;">@milkdown/crepe</span> pre-bundled via Rollup code-splitting</div>
+    <div class="stats">
+      <div class="stat-item">Words: <span class="stat-val" id="word-count">0</span></div>
+      <div class="stat-item">Characters: <span class="stat-val" id="char-count">0</span></div>
+    </div>
+  </footer>
+
+  <!-- Editor Bootstrapping Module Script -->
+  <script type="module">
+    import { Crepe } from '@milkdown/crepe';
+
+    // Elements
+    const themeLink = document.getElementById('crepe-theme-link');
+    const themeSelector = document.getElementById('theme-selector');
+    const previewPanel = document.getElementById('preview-panel');
+    const sourceTextarea = document.getElementById('markdown-source');
+    const copyBtn = document.getElementById('copy-source');
+
+    // Theme selector handler
+    themeSelector.addEventListener('change', (e) => {
+      themeLink.href = e.target.value;
+      
+      // Update body backgrounds if using light vs dark crepe themes
+      const isLight = e.target.value.includes('light') || (!e.target.value.includes('-dark') && e.target.value.endsWith('crepe/style.css') || e.target.value.endsWith('nord/style.css') || e.target.value.endsWith('frame/style.css'));
+      if (isLight) {
+        document.documentElement.style.setProperty('--bg-app', '#f1f5f9');
+        document.documentElement.style.setProperty('--text-color', '#1e293b');
+        document.documentElement.style.setProperty('--border-color', 'rgba(0, 0, 0, 0.08)');
+        document.documentElement.style.setProperty('--bg-panel', 'rgba(255, 255, 255, 0.8)');
+      } else {
+        document.documentElement.style.setProperty('--bg-app', '#080a0f');
+        document.documentElement.style.setProperty('--text-color', '#e2e8f0');
+        document.documentElement.style.setProperty('--border-color', 'rgba(255, 255, 255, 0.08)');
+        document.documentElement.style.setProperty('--bg-panel', 'rgba(15, 20, 30, 0.75)');
+      }
+    });
+
+    // Toggle preview panel
+    document.getElementById('toggle-preview').addEventListener('click', () => {
+      previewPanel.classList.toggle('collapsed');
+    });
+
+    // Copy source to clipboard
+    copyBtn.addEventListener('click', () => {
+      sourceTextarea.select();
+      navigator.clipboard.writeText(sourceTextarea.value);
+      const originalText = copyBtn.innerText;
+      copyBtn.innerText = 'Copied!';
+      copyBtn.classList.add('btn-primary');
+      setTimeout(() => {
+        copyBtn.innerText = originalText;
+        copyBtn.classList.remove('btn-primary');
+      }, 1500);
+    });
+
+    // Export markdown file
+    document.getElementById('export-md').addEventListener('click', () => {
+      const markdown = sourceTextarea.value;
+      const blob = new Blob([markdown], { type: 'text/markdown;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'crepe-document.md';
+      link.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // Default content
+    const defaultContent = `# 🌌 Crepe WYSIWYG Editor
+
+Welcome to the **Milkdown Crepe** demo, powered by our pre-bundled ESM vendor scripts.
+
+Crepe is a modern out-of-the-box WYSIWYG block editor built on top of Milkdown and ProseMirror. It simplifies setup while keeping the rich capabilities of Markdown intact.
+
+---
+
+## 🎨 Theme Experiments
+
+Use the theme selector in the top-right corner to swap themes dynamically. Crepe packages several themes:
+1. **Classic Theme**: A comfortable warm material-design theme.
+2. **Nord Theme**: Cool, north-inspired frosty arctic-blue colors.
+3. **Frame Theme**: A sleek, minimal layout optimized for typing.
+
+All themes have dedicated **Light** and **Dark** variants!
+
+---
+
+## 🏗️ Interactive Elements
+
+Crepe includes:
+- **Block-level Editing**: Type \`/\` on an empty line to trigger the block inserter commands.
+- **Drag Handle Menu**: Hover on paragraphs to reveal the drag handle. Grab it to re-order paragraphs instantly.
+- **Inline Formatting**: Highlight any text to reveal the floating format toolbar!
+- **Table Controls**: Select cells, add columns/rows, or format cell headers.
+
+### A Quick Code Sandbox
+\`\`\`javascript
+import { Crepe } from '@milkdown/crepe';
+
+const crepe = new Crepe({
+  el: document.getElementById('editor'),
+  defaultValue: '# Hello World'
+});
+
+await crepe.create();
+\`\`\`
+
+### A Task Checklist
+- [x] Bundle Crepe entrypoint via Rollup
+- [x] Recursively copy theme CSS directories
+- [x] Configure dynamic theme selectors
+- [ ] Write rich documentations
+`;
+
+    // Word/Char count helpers
+    function updateCounts(markdown) {
+      const text = markdown.trim();
+      const words = text ? text.split(/\s+/).filter(w => w.length > 0).length : 0;
+      const chars = markdown.length;
+      
+      document.getElementById('word-count').innerText = words.toLocaleString();
+      document.getElementById('char-count').innerText = chars.toLocaleString();
+    }
+
+    // Initialize Crepe Editor
+    try {
+      const crepe = new Crepe({
+        root: document.getElementById('crepe-container'),
+        defaultValue: defaultContent
+      });
+
+      // Register listener before creating
+      crepe.on((listener) => {
+        listener.markdownUpdated((ctx, markdown) => {
+          sourceTextarea.value = markdown;
+          updateCounts(markdown);
+        });
+      });
+
+      const editor = await crepe.create();
+      
+      // Load initial content source value
+      sourceTextarea.value = crepe.getMarkdown();
+      updateCounts(crepe.getMarkdown());
+      
+      console.log("Crepe Editor initialized successfully!");
+    } catch (err) {
+      console.error("Failed to load Crepe Editor:", err);
+      document.getElementById('crepe-container').innerHTML = `
+        <div style="padding: 2rem; color: #f43f5e; font-family: sans-serif;">
+          <h3>Failed to mount Crepe Editor</h3>
+          <p>${err.message}</p>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌌 Milkdown Zero - Premium No-Build ESM Editor</title>
+  <meta name="description" content="A gorgeous, distraction-free Markdown editor running on Milkdown ESM bundles with zero build tools.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/dist/prose/view/style/prosemirror.css">
+  <link rel="stylesheet" href="/dist/prose/gapcursor/style/gapcursor.css">
+  <link rel="stylesheet" href="/dist/prose/tables/style/tables.css">
+  <link rel="stylesheet" href="/example/index.css">
+
+  <!-- Import Map -->
+  <script type="importmap">
+  {
+    "imports": {
+      "@milkdown/kit/core": "/dist/milkdown_core.js",
+      "@milkdown/kit/ctx": "/dist/milkdown_ctx.js",
+      "@milkdown/kit/transformer": "/dist/milkdown_transformer.js",
+      "@milkdown/kit/utils": "/dist/milkdown_utils.js",
+      "@milkdown/kit/preset/commonmark": "/dist/milkdown_preset_commonmark.js",
+      "@milkdown/kit/preset/gfm": "/dist/milkdown_preset_gfm.js",
+      "@milkdown/kit/plugin/block": "/dist/milkdown_plugin_block.js",
+      "@milkdown/kit/plugin/clipboard": "/dist/milkdown_plugin_clipboard.js",
+      "@milkdown/kit/plugin/cursor": "/dist/milkdown_plugin_cursor.js",
+      "@milkdown/kit/plugin/history": "/dist/milkdown_plugin_history.js",
+      "@milkdown/kit/plugin/indent": "/dist/milkdown_plugin_indent.js",
+      "@milkdown/kit/plugin/listener": "/dist/milkdown_plugin_listener.js",
+      "@milkdown/kit/plugin/slash": "/dist/milkdown_plugin_slash.js",
+      "@milkdown/kit/plugin/tooltip": "/dist/milkdown_plugin_tooltip.js",
+      "@milkdown/kit/plugin/trailing": "/dist/milkdown_plugin_trailing.js",
+      "@milkdown/kit/plugin/upload": "/dist/milkdown_plugin_upload.js",
+      "@milkdown/kit/plugin/diff": "/dist/milkdown_plugin_diff.js",
+      "@milkdown/kit/plugin/streaming": "/dist/milkdown_plugin_streaming.js",
+      "@milkdown/kit/component": "/dist/milkdown_component.js",
+      "@milkdown/kit/prose": "/dist/milkdown_prose.js",
+      "@milkdown/kit/prose/state": "/dist/milkdown_prose_state.js",
+      "@milkdown/kit/prose/view": "/dist/milkdown_prose_view.js",
+      "@milkdown/kit/prose/model": "/dist/milkdown_prose_model.js",
+      "@milkdown/kit/prose/transform": "/dist/milkdown_prose_transform.js",
+      "@milkdown/kit/prose/commands": "/dist/milkdown_prose_commands.js",
+      "@milkdown/kit/prose/keymap": "/dist/milkdown_prose_keymap.js",
+      "@milkdown/kit/prose/history": "/dist/milkdown_prose_history.js",
+      "@milkdown/kit/prose/inputrules": "/dist/milkdown_prose_inputrules.js",
+      "@milkdown/kit/prose/dropcursor": "/dist/milkdown_prose_dropcursor.js",
+      "@milkdown/kit/prose/gapcursor": "/dist/milkdown_prose_gapcursor.js",
+      "@milkdown/kit/prose/schema-list": "/dist/milkdown_prose_schema_list.js",
+      "@milkdown/kit/prose/tables": "/dist/milkdown_prose_tables.js"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header>
+    <div class="brand">
+      <div class="logo-glow">M</div>
+      <h1>Milkdown Zero</h1>
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        <span>ESM Live Sync</span>
+      </div>
+    </div>
+    
+    <div class="actions">
+      <button class="btn" id="toggle-sidebar" title="Toggle Sidebar">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h16"></path></svg>
+        <span>Outline</span>
+      </button>
+      
+      <button class="btn" id="toggle-preview" title="Toggle Source Code">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+        <span>Raw Source</span>
+      </button>
+
+      <button class="btn" id="toggle-theme" title="Toggle Theme">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" id="theme-icon"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        <span id="theme-text">Light Mode</span>
+      </button>
+
+      <button class="btn btn-primary" id="export-md">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+        <span>Export Markdown</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Dashboard Main Container -->
+  <div class="dashboard-container">
+    
+    <!-- Left Sidebar: Guide and Dynamic TOC -->
+    <aside class="sidebar" id="sidebar-panel">
+      <div class="sidebar-section">
+        <h2 class="sidebar-title">Document Outline</h2>
+        <ul class="outline-list" id="outline-toc">
+          <li style="font-size: 0.85rem; color: var(--muted-text); font-style: italic;">No headers found...</li>
+        </ul>
+      </div>
+      
+      <div class="sidebar-section">
+        <h2 class="sidebar-title">Shortcuts Reference</h2>
+        <div class="shortcut-grid">
+          <span class="shortcut-kbd">**bold**</span>
+          <span>Bold text</span>
+          
+          <span class="shortcut-kbd">*italic*</span>
+          <span>Italic text</span>
+          
+          <span class="shortcut-kbd"># </span>
+          <span>Heading 1</span>
+          
+          <span class="shortcut-kbd">## </span>
+          <span>Heading 2</span>
+          
+          <span class="shortcut-kbd">```</span>
+          <span>Code Block</span>
+          
+          <span class="shortcut-kbd">&gt; </span>
+          <span>Blockquote</span>
+          
+          <span class="shortcut-kbd">- [ ]</span>
+          <span>Task List</span>
+          
+          <span class="shortcut-kbd">- </span>
+          <span>Bullet List</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Center Workspace -->
+    <main class="editor-workspace">
+      <div class="editor-card" id="editor-container"></div>
+    </main>
+
+    <!-- Right Panel: Raw Source Sync -->
+    <section class="preview-panel" id="preview-panel">
+      <div class="preview-header">
+        <h2 class="sidebar-title" style="margin-bottom: 0;">Markdown Source</h2>
+        <button class="btn" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" id="copy-source">Copy</button>
+      </div>
+      <div class="preview-body">
+        <textarea class="markdown-textarea" id="markdown-source" readonly></textarea>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer Status Bar -->
+  <footer>
+    <div>Powered by <span style="color: var(--accent-color); font-weight: 600;">@milkdown/kit</span> pre-bundled via Rollup</div>
+    <div class="stats">
+      <div class="stat-item">Words: <span class="stat-val" id="word-count">0</span></div>
+      <div class="stat-item">Characters: <span class="stat-val" id="char-count">0</span></div>
+    </div>
+  </footer>
+
+  <!-- Editor Bootstrapping Module Script -->
+  <script type="module">
+    import { Editor, rootCtx, defaultValueCtx } from '@milkdown/kit/core';
+    import { commonmark } from '@milkdown/kit/preset/commonmark';
+    import { gfm } from '@milkdown/kit/preset/gfm';
+    import { history } from '@milkdown/kit/plugin/history';
+    import { listener, listenerCtx } from '@milkdown/kit/plugin/listener';
+
+    // Toggle panels
+    const sidebar = document.getElementById('sidebar-panel');
+    const previewPanel = document.getElementById('preview-panel');
+    
+    document.getElementById('toggle-sidebar').addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+    });
+    
+    document.getElementById('toggle-preview').addEventListener('click', () => {
+      previewPanel.classList.toggle('collapsed');
+    });
+
+    // Theme switching
+    const toggleThemeBtn = document.getElementById('toggle-theme');
+    const themeIcon = document.getElementById('theme-icon');
+    const themeText = document.getElementById('theme-text');
+    
+    toggleThemeBtn.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+      if (isDark) {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeText.innerText = 'Dark Mode';
+        themeIcon.innerHTML = `<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m11.314 11.314l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z"></path>`;
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        themeText.innerText = 'Light Mode';
+        themeIcon.innerHTML = `<path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>`;
+      }
+    });
+
+    // Copy source to clipboard
+    const sourceTextarea = document.getElementById('markdown-source');
+    const copyBtn = document.getElementById('copy-source');
+    copyBtn.addEventListener('click', () => {
+      sourceTextarea.select();
+      navigator.clipboard.writeText(sourceTextarea.value);
+      const originalText = copyBtn.innerText;
+      copyBtn.innerText = 'Copied!';
+      copyBtn.classList.add('btn-primary');
+      setTimeout(() => {
+        copyBtn.innerText = originalText;
+        copyBtn.classList.remove('btn-primary');
+      }, 1500);
+    });
+
+    // Export markdown file
+    document.getElementById('export-md').addEventListener('click', () => {
+      const markdown = sourceTextarea.value;
+      const blob = new Blob([markdown], { type: 'text/markdown;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'milkdown-document.md';
+      link.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // Default content
+    const defaultContent = `# 🌌 Welcome to Milkdown Zero
+
+A premium, no-build Markdown editing experience powered by Milkdown ESM bundles, served instantly to your browser.
+
+## 🚀 Key Features
+
+1. **Zero Build Tools**: Loads directly using native browser ES Modules and Import Maps.
+2. **Cohesive Bundle Splitting**: Shared dependencies are extracted into a common chunk (\`shared-[hash].js\`) to prevent module duplication.
+3. **GFM Support**: Out-of-the-box task lists, tables, strikethrough, and autolinks.
+4. **Distraction-Free Design**: Focus on your content with our sleek glassmorphism dashboard.
+
+## 📝 Live Formatting Sandbox
+
+Feel free to write and edit this text. Here is a quick showcase of supported Markdown constructs:
+
+### Code Snippets
+Here's a JavaScript example:
+
+\`\`\`javascript
+import { Editor } from '@milkdown/kit/core';
+import { commonmark } from '@milkdown/kit/preset/commonmark';
+
+Editor.make()
+  .use(commonmark)
+  .create();
+\`\`\`
+
+### Rich Blockquotes
+> "Simplicity is the ultimate sophistication."
+> — Leonardo da Vinci
+
+### Task Lists
+- [x] Pre-bundle Milkdown with Rollup
+- [x] Configure Import Maps in HTML
+- [x] Verify no-build runtime resolution
+- [ ] Share with colleagues
+
+---
+
+*Enjoy a clean, fast, and modern editing workflow.*`;
+
+    // Dynamic Outline builder helper
+    function updateOutline() {
+      const editorElement = document.querySelector('.ProseMirror');
+      if (!editorElement) return;
+
+      const headings = editorElement.querySelectorAll('h1, h2, h3');
+      const outlineContainer = document.getElementById('outline-toc');
+      outlineContainer.innerHTML = '';
+      
+      if (headings.length === 0) {
+        outlineContainer.innerHTML = `<li style="font-size: 0.85rem; color: var(--muted-text); font-style: italic;">No headers found...</li>`;
+        return;
+      }
+
+      headings.forEach((heading, idx) => {
+        // Assign a unique ID to scroll to it
+        const headerId = `heading-node-${idx}`;
+        heading.id = headerId;
+
+        const li = document.createElement('li');
+        li.className = `outline-item ${heading.tagName.toLowerCase()}`;
+        li.innerText = heading.innerText || heading.textContent;
+        li.title = li.innerText;
+        
+        li.addEventListener('click', () => {
+          heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Highlight target briefly
+          heading.style.transition = 'background-color 0.5s ease';
+          heading.style.backgroundColor = 'rgba(99, 102, 241, 0.15)';
+          setTimeout(() => {
+            heading.style.backgroundColor = 'transparent';
+          }, 1000);
+        });
+        outlineContainer.appendChild(li);
+      });
+    }
+
+    // Word/Char count helpers
+    function updateCounts(markdown) {
+      const text = markdown.trim();
+      const words = text ? text.split(/\s+/).filter(w => w.length > 0).length : 0;
+      const chars = markdown.length;
+      
+      document.getElementById('word-count').innerText = words.toLocaleString();
+      document.getElementById('char-count').innerText = chars.toLocaleString();
+    }
+
+    // Initialize Milkdown Editor
+    try {
+      const editor = await Editor.make()
+        .config((ctx) => {
+          ctx.set(rootCtx, document.getElementById('editor-container'));
+          ctx.set(defaultValueCtx, defaultContent);
+          
+          // Configure listener
+          ctx.get(listenerCtx)
+            .markdownUpdated((ctx, markdown) => {
+              sourceTextarea.value = markdown;
+              updateCounts(markdown);
+              updateOutline();
+            })
+            .mounted((ctx) => {
+              // Get current content and set initial states
+              const markdown = sourceTextarea.value;
+              updateOutline();
+              // Trigger outline render check after mounting
+              setTimeout(updateOutline, 100);
+            });
+        })
+        .use(commonmark)
+        .use(gfm)
+        .use(history)
+        .use(listener)
+        .create();
+        
+      console.log("Milkdown Editor mounted successfully!");
+    } catch (err) {
+      console.error("Failed to load Milkdown Editor:", err);
+      document.getElementById('editor-container').innerHTML = `
+        <div style="padding: 2rem; color: #f43f5e; font-family: sans-serif;">
+          <h3>Failed to mount editor</h3>
+          <p>${err.message}</p>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
