@@ -1,6 +1,6 @@
 import { c as computePosition, f as flip, o as offset, s as shift, a as autoUpdate } from './shared-C9xF-VKH.js';
 import { posToDOMRect } from './milkdown_prose.js';
-import { $ as $ctx, a as $prose } from './shared-BvLCM71P.js';
+import { $ctx, $prose } from './milkdown_utils.js';
 import { TextSelection, Plugin, PluginKey } from './milkdown_prose_state.js';
 import { t as throttle } from './shared-ZvO3YIo3.js';
 import './milkdown_prose_inputrules.js';

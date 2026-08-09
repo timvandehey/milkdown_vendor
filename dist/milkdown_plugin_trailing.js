@@ -1,4 +1,4 @@
-import { $ as $ctx, a as $prose } from './shared-BvLCM71P.js';
+import { $ctx, $prose } from './milkdown_utils.js';
 import { PluginKey, Plugin } from './milkdown_prose_state.js';
 import './shared-B6E9QbLK.js';
 import './milkdown_ctx.js';

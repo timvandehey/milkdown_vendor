@@ -1,5 +1,5 @@
 import { p as parserCtx } from './shared-B6E9QbLK.js';
-import { f as $command, $ as $ctx, a as $prose } from './shared-BvLCM71P.js';
+import { $command, $ctx, $prose } from './milkdown_utils.js';
 import { PluginKey, Plugin } from './milkdown_prose_state.js';
 import { ReplaceStep } from './milkdown_prose_transform.js';
 import { Slice, Fragment } from './milkdown_prose_model.js';

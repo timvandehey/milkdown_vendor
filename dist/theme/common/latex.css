@@ -1,4 +1,4 @@
-@import 'katex/dist/katex.min.css';
+@import '../../katex.min.css';
 
 .milkdown span[data-type='math_inline'] {
     padding: 0 4px;

@@ -62,9 +62,7 @@ export default {
     format: 'es',
     sourcemap: true,
     chunkFileNames: 'shared-[hash].js',
-    plugins: [
-      replaceConfig
-    ]
+    plugins: []
   },
   plugins: [
     resolve({

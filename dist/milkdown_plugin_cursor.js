@@ -1,4 +1,4 @@
-import { $ as $ctx, a as $prose } from './shared-BvLCM71P.js';
+import { $ctx, $prose } from './milkdown_utils.js';
 import { Plugin, PluginKey, NodeSelection, TextSelection } from './milkdown_prose_state.js';
 import { gapCursor } from './milkdown_prose_gapcursor.js';
 import './shared-B6E9QbLK.js';

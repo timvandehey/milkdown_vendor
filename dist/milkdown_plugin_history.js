@@ -1,5 +1,5 @@
 import { c as commandsCtx } from './shared-B6E9QbLK.js';
-import { i as $useKeymap, $ as $ctx, a as $prose, f as $command } from './shared-BvLCM71P.js';
+import { $useKeymap, $ctx, $prose, $command } from './milkdown_utils.js';
 import { history as history$1, undo, redo } from './milkdown_prose_history.js';
 import './milkdown_ctx.js';
 import './shared-CFXWASEb.js';

@@ -1,6 +1,6 @@
 import { h as schemaCtx, b as editorViewOptionsCtx, s as serializerCtx, p as parserCtx } from './shared-B6E9QbLK.js';
 import { getNodeFromSchema, isTextOnlySlice } from './milkdown_prose.js';
-import { a as $prose } from './shared-BvLCM71P.js';
+import { $prose } from './milkdown_utils.js';
 import { PluginKey, Plugin, TextSelection } from './milkdown_prose_state.js';
 import { DOMParser, DOMSerializer } from './milkdown_prose_model.js';
 import './milkdown_ctx.js';

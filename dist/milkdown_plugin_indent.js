@@ -1,4 +1,4 @@
-import { $ as $ctx, j as $shortcut } from './shared-BvLCM71P.js';
+import { $ctx, $shortcut } from './milkdown_utils.js';
 import { TextSelection, AllSelection } from './milkdown_prose_state.js';
 import './shared-B6E9QbLK.js';
 import './milkdown_ctx.js';

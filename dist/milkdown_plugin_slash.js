@@ -1,4 +1,4 @@
-import { $ as $ctx, a as $prose } from './shared-BvLCM71P.js';
+import { $ctx, $prose } from './milkdown_utils.js';
 import { c as computePosition, f as flip, o as offset } from './shared-C9xF-VKH.js';
 import { findParentNode, posToDOMRect } from './milkdown_prose.js';
 import { TextSelection, Plugin, PluginKey } from './milkdown_prose_state.js';

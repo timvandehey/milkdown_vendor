@@ -1,5 +1,5 @@
 import { findParent, browser } from './milkdown_prose.js';
-import { $ as $ctx, a as $prose } from './shared-BvLCM71P.js';
+import { $ctx, $prose } from './milkdown_utils.js';
 import { e as editorViewCtx } from './shared-B6E9QbLK.js';
 import { c as computePosition, f as flip, o as offset } from './shared-C9xF-VKH.js';
 import { NodeSelection, PluginKey, Plugin } from './milkdown_prose_state.js';

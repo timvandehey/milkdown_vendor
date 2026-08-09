@@ -1,6 +1,6 @@
 import { v as visit, k as SKIP, e as editorViewCtx, n as visitParents, o as remarkStringifyOptionsCtx, c as commandsCtx } from './shared-B6E9QbLK.js';
 import { markRule, findSelectedNodeOfType, findNodeInSelection } from './milkdown_prose.js';
-import { c as $nodeSchema, f as $command, k as $nodeAttr, i as $useKeymap, h as $inputRule, l as $node, m as $markAttr, n as $markSchema, a as $prose, $ as $ctx, b as $remark } from './shared-BvLCM71P.js';
+import { $nodeSchema, $command, $nodeAttr, $useKeymap, $inputRule, $node, $markAttr, $markSchema, $prose, $ctx, $remark } from './milkdown_utils.js';
 import { e as expectDomTypeError } from './shared-CFXWASEb.js';
 import { Plugin, PluginKey, TextSelection, Selection } from './milkdown_prose_state.js';
 import { ReplaceStep, AddMarkStep, findWrapping } from './milkdown_prose_transform.js';

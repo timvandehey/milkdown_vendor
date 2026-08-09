@@ -1,5 +1,5 @@
 import { h as schemaCtx } from './shared-B6E9QbLK.js';
-import { $ as $ctx, a as $prose } from './shared-BvLCM71P.js';
+import { $ctx, $prose } from './milkdown_utils.js';
 import { m as missingNodeInSchema } from './shared-CFXWASEb.js';
 import { PluginKey, Plugin } from './milkdown_prose_state.js';
 import { DecorationSet, Decoration } from './milkdown_prose_view.js';
