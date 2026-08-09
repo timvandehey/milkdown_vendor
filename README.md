@@ -41,30 +41,30 @@ Add the following `<script type="importmap">` to the `<head>` of your HTML docum
 <script type="importmap">
 {
   "imports": {
-    "@milkdown/crepe": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_crepe.js",
-    "@milkdown/kit/core": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_core.js",
-    "@milkdown/kit/ctx": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_ctx.js",
-    "@milkdown/kit/transformer": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_transformer.js",
-    "@milkdown/kit/utils": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_utils.js",
-    "@milkdown/kit/preset/commonmark": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_preset_commonmark.js",
-    "@milkdown/kit/preset/gfm": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_preset_gfm.js",
-    "@milkdown/kit/plugin/block": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_plugin_block.js",
-    "@milkdown/kit/plugin/clipboard": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_plugin_clipboard.js",
-    "@milkdown/kit/plugin/cursor": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_plugin_cursor.js",
-    "@milkdown/kit/plugin/history": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_plugin_history.js",
-    "@milkdown/kit/plugin/indent": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_plugin_indent.js",
-    "@milkdown/kit/plugin/listener": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_plugin_listener.js",
-    "@milkdown/kit/plugin/slash": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_plugin_slash.js",
-    "@milkdown/kit/plugin/tooltip": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_plugin_tooltip.js",
-    "@milkdown/kit/plugin/trailing": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_plugin_trailing.js",
-    "@milkdown/kit/plugin/upload": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_upload.js",
-    "@milkdown/kit/prose": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_prose.js",
-    "@milkdown/kit/prose/state": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_prose_state.js",
-    "@milkdown/kit/prose/view": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_prose_view.js",
-    "@milkdown/kit/prose/model": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_prose_model.js",
-    "@milkdown/kit/prose/transform": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_prose_transform.js",
-    "@milkdown/kit/prose/commands": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_prose_commands.js",
-    "@milkdown/kit/prose/keymap": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_prose_keymap.js"
+    "@milkdown/crepe": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/milkdown_crepe.js",
+    "@milkdown/kit/core": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/milkdown_core.js",
+    "@milkdown/kit/ctx": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/milkdown_ctx.js",
+    "@milkdown/kit/transformer": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/milkdown_transformer.js",
+    "@milkdown/kit/utils": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/milkdown_utils.js",
+    "@milkdown/kit/preset/commonmark": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/milkdown_preset_commonmark.js",
+    "@milkdown/kit/preset/gfm": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/milkdown_preset_gfm.js",
+    "@milkdown/kit/plugin/block": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/milkdown_plugin_block.js",
+    "@milkdown/kit/plugin/clipboard": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/milkdown_plugin_clipboard.js",
+    "@milkdown/kit/plugin/cursor": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/milkdown_plugin_cursor.js",
+    "@milkdown/kit/plugin/history": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/milkdown_plugin_history.js",
+    "@milkdown/kit/plugin/indent": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/milkdown_plugin_indent.js",
+    "@milkdown/kit/plugin/listener": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/milkdown_plugin_listener.js",
+    "@milkdown/kit/plugin/slash": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/milkdown_plugin_slash.js",
+    "@milkdown/kit/plugin/tooltip": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/milkdown_plugin_tooltip.js",
+    "@milkdown/kit/plugin/trailing": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/milkdown_plugin_trailing.js",
+    "@milkdown/kit/plugin/upload": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/milkdown_upload.js",
+    "@milkdown/kit/prose": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/milkdown_prose.js",
+    "@milkdown/kit/prose/state": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/milkdown_prose_state.js",
+    "@milkdown/kit/prose/view": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/milkdown_prose_view.js",
+    "@milkdown/kit/prose/model": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/milkdown_prose_model.js",
+    "@milkdown/kit/prose/transform": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/milkdown_prose_transform.js",
+    "@milkdown/kit/prose/commands": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/milkdown_prose_commands.js",
+    "@milkdown/kit/prose/keymap": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/milkdown_prose_keymap.js"
   }
 }
 </script>
@@ -78,13 +78,13 @@ Milkdown v7 styles are externalized. Load the pre-bundled CSS files inside your 
 
 ```html
 <!-- ProseMirror styles -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/prose/view/style/prosemirror.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/prose/gapcursor/style/gapcursor.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/prose/tables/style/tables.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/prose/view/style/prosemirror.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/prose/gapcursor/style/gapcursor.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/prose/tables/style/tables.css">
 
 <!-- Crepe styles (Core layout + Color theme variables) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/theme/common/style.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/theme/crepe-dark/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/theme/common/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@v1.0.2/dist/theme/crepe-dark/style.css">
 
 ```
 
