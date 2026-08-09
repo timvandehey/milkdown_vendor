@@ -1,359 +1,398 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🌌 Milkdown Zero - Premium No-Build ESM Editor</title>
-  <meta name="description" content="A gorgeous, distraction-free Markdown editor running on Milkdown ESM bundles with zero build tools.">
-  
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/prose/view/style/prosemirror.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/prose/gapcursor/style/gapcursor.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/prose/tables/style/tables.css">
-  <link rel="stylesheet" href="/example/index.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>No-Build Lit SPA Skeleton</title>
+<!-- Crepe Core Layout Stylesheet -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/theme/common/style.css">
 
-  <!-- Import Map -->
-  <script type="importmap">
-  {
-    "imports": {
-      "@milkdown/kit/core": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_core.js",
-      "@milkdown/kit/ctx": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_ctx.js",
-      "@milkdown/kit/transformer": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_transformer.js",
-      "@milkdown/kit/utils": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_utils.js",
-      "@milkdown/kit/preset/commonmark": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_preset_commonmark.js",
-      "@milkdown/kit/preset/gfm": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_preset_gfm.js",
-      "@milkdown/kit/plugin/block": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_plugin_block.js",
-      "@milkdown/kit/plugin/clipboard": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_plugin_clipboard.js",
-      "@milkdown/kit/plugin/cursor": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_plugin_cursor.js",
-      "@milkdown/kit/plugin/history": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_plugin_history.js",
-      "@milkdown/kit/plugin/indent": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_plugin_indent.js",
-      "@milkdown/kit/plugin/listener": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_plugin_listener.js",
-      "@milkdown/kit/plugin/slash": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_plugin_slash.js",
-      "@milkdown/kit/plugin/tooltip": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_plugin_tooltip.js",
-      "@milkdown/kit/plugin/trailing": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_plugin_trailing.js",
-      "@milkdown/kit/plugin/upload": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_plugin_upload.js",
-      "@milkdown/kit/plugin/diff": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_plugin_diff.js",
-      "@milkdown/kit/plugin/streaming": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_plugin_streaming.js",
-      "@milkdown/kit/component": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_component.js",
-      "@milkdown/kit/prose": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_prose.js",
-      "@milkdown/kit/prose/state": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_prose_state.js",
-      "@milkdown/kit/prose/view": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_prose_view.js",
-      "@milkdown/kit/prose/model": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_prose_model.js",
-      "@milkdown/kit/prose/transform": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_prose_transform.js",
-      "@milkdown/kit/prose/commands": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_prose_commands.js",
-      "@milkdown/kit/prose/keymap": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_prose_keymap.js",
-      "@milkdown/kit/prose/history": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_prose_history.js",
-      "@milkdown/kit/prose/inputrules": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_prose_inputrules.js",
-      "@milkdown/kit/prose/dropcursor": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_prose_dropcursor.js",
-      "@milkdown/kit/prose/gapcursor": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_prose_gapcursor.js",
-      "@milkdown/kit/prose/schema-list": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_prose_schema_list.js",
-      "@milkdown/kit/prose/tables": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_prose_tables.js"
-    }
+<!-- Crepe Dark Theme Stylesheet -->
+<link id="crepe-theme-link" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/theme/crepe-dark/style.css">
+
+<!-- Import Map for Browser ESM Resolving -->
+<script type="importmap">
+{
+  "imports": {
+    "@milkdown/crepe": "https://cdn.jsdelivr.net/gh/timvandehey/milkdown_vendor@main/dist/milkdown_crepe.js"
   }
-  </script>
+}
+</script>
+<style>
+  :root {
+    --bg: #0f1115;
+    --panel: #171a21;
+    --border: #262b36;
+    --text: #e7e9ee;
+    --muted: #8b93a3;
+    --accent: #5b8cff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
+  header {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--panel);
+  }
+  header a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    padding: 0.4rem 0.7rem;
+    border-radius: 6px;
+  }
+  header a.active { color: var(--text); background: #1f2430; }
+  header a:hover { color: var(--text); }
+  main { padding: 2rem 1.5rem;  margin: 0 auto; }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+  }
+  button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  button:hover { opacity: 0.9; }
+  input {
+    background: #0f1115;
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 6px;
+    padding: 0.5rem 0.7rem;
+    font-size: 0.9rem;
+  }
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .flex-item {
+    flex: 1 1 60ch;
+    max-width: 100%;
+  }
+
+/* <div class="flex-container">
+  <div class="flex-item">Item 1</div>
+  <div class="flex-item">Item 2</div>
+</div> */
+
+/* Layout container */
+.workspace-container {
+  display: flex;
+flex-wrap: wrap;
+  gap: 1.0rem;
+}
+
+.workspace-panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.5rem;
+  flex: 1 1 60ch;
+  /* max-width: 100%; */
+  /* min-height: 400px;
+  display: flex;
+  flex-direction: column; */
+}
+
+.workspace-panel h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+
+/* Raw markdown text rendering */
+.raw-preview {
+  /* width: 100%; */
+  /* flex: 1; */
+  background: #0f1115;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: monospace;
+  padding: 1rem;
+  resize: none;
+  outline: none;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Responsive side-by-side behavior */
+/* @media (min-width: 768px) {
+  .workspace-container {
+    flex-direction: row;
+  }
+  
+  .workspace-panel {
+    flex: 1;
+    min-width: 0; 
+  }
+} */
+</style>
 </head>
 <body>
 
-  <!-- Top Navigation Header -->
-  <header>
-    <div class="brand">
-      <div class="logo-glow">M</div>
-      <h1>Milkdown Zero</h1>
-      <div class="status-badge">
-        <span class="status-dot"></span>
-        <span>ESM Live Sync</span>
-      </div>
-    </div>
-    
-    <div class="actions">
-      <button class="btn" id="toggle-sidebar" title="Toggle Sidebar">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h16"></path></svg>
-        <span>Outline</span>
-      </button>
-      
-      <button class="btn" id="toggle-preview" title="Toggle Source Code">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-        <span>Raw Source</span>
-      </button>
+  <!-- app-router owns the whole page: nav + swapping views -->
+  <app-router></app-router>
 
-      <button class="btn" id="toggle-theme" title="Toggle Theme">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" id="theme-icon"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-        <span id="theme-text">Light Mode</span>
-      </button>
-
-      <button class="btn btn-primary" id="export-md">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-        <span>Export Markdown</span>
-      </button>
-    </div>
-  </header>
-
-  <!-- Dashboard Main Container -->
-  <div class="dashboard-container">
-    
-    <!-- Left Sidebar: Guide and Dynamic TOC -->
-    <aside class="sidebar" id="sidebar-panel">
-      <div class="sidebar-section">
-        <h2 class="sidebar-title">Document Outline</h2>
-        <ul class="outline-list" id="outline-toc">
-          <li style="font-size: 0.85rem; color: var(--muted-text); font-style: italic;">No headers found...</li>
-        </ul>
-      </div>
-      
-      <div class="sidebar-section">
-        <h2 class="sidebar-title">Shortcuts Reference</h2>
-        <div class="shortcut-grid">
-          <span class="shortcut-kbd">**bold**</span>
-          <span>Bold text</span>
-          
-          <span class="shortcut-kbd">*italic*</span>
-          <span>Italic text</span>
-          
-          <span class="shortcut-kbd"># </span>
-          <span>Heading 1</span>
-          
-          <span class="shortcut-kbd">## </span>
-          <span>Heading 2</span>
-          
-          <span class="shortcut-kbd">```</span>
-          <span>Code Block</span>
-          
-          <span class="shortcut-kbd">&gt; </span>
-          <span>Blockquote</span>
-          
-          <span class="shortcut-kbd">- [ ]</span>
-          <span>Task List</span>
-          
-          <span class="shortcut-kbd">- </span>
-          <span>Bullet List</span>
-        </div>
-      </div>
-    </aside>
-
-    <!-- Center Workspace -->
-    <main class="editor-workspace">
-      <div class="editor-card" id="editor-container"></div>
-    </main>
-
-    <!-- Right Panel: Raw Source Sync -->
-    <section class="preview-panel" id="preview-panel">
-      <div class="preview-header">
-        <h2 class="sidebar-title" style="margin-bottom: 0;">Markdown Source</h2>
-        <button class="btn" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" id="copy-source">Copy</button>
-      </div>
-      <div class="preview-body">
-        <textarea class="markdown-textarea" id="markdown-source" readonly></textarea>
-      </div>
-    </section>
-
-  </div>
-
-  <!-- Footer Status Bar -->
-  <footer>
-    <div>Powered by <span style="color: var(--accent-color); font-weight: 600;">@milkdown/kit</span> pre-bundled via Rollup</div>
-    <div class="stats">
-      <div class="stat-item">Words: <span class="stat-val" id="word-count">0</span></div>
-      <div class="stat-item">Characters: <span class="stat-val" id="char-count">0</span></div>
-    </div>
-  </footer>
-
-  <!-- Editor Bootstrapping Module Script -->
   <script type="module">
-    import { Editor, rootCtx, defaultValueCtx } from '@milkdown/kit/core';
-    import { commonmark } from '@milkdown/kit/preset/commonmark';
-    import { gfm } from '@milkdown/kit/preset/gfm';
-    import { history } from '@milkdown/kit/plugin/history';
-    import { listener, listenerCtx } from '@milkdown/kit/plugin/listener';
 
-    // Toggle panels
-    const sidebar = document.getElementById('sidebar-panel');
-    const previewPanel = document.getElementById('preview-panel');
-    
-    document.getElementById('toggle-sidebar').addEventListener('click', () => {
-      sidebar.classList.toggle('collapsed');
-    });
-    
-    document.getElementById('toggle-preview').addEventListener('click', () => {
-      previewPanel.classList.toggle('collapsed');
-    });
+import { Crepe } from '@milkdown/crepe';
 
-    // Theme switching
-    const toggleThemeBtn = document.getElementById('toggle-theme');
-    const themeIcon = document.getElementById('theme-icon');
-    const themeText = document.getElementById('theme-text');
-    
-    toggleThemeBtn.addEventListener('click', () => {
-      const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
-      if (isDark) {
-        document.documentElement.setAttribute('data-theme', 'light');
-        themeText.innerText = 'Dark Mode';
-        themeIcon.innerHTML = `<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m11.314 11.314l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z"></path>`;
-      } else {
-        document.documentElement.removeAttribute('data-theme');
-        themeText.innerText = 'Light Mode';
-        themeIcon.innerHTML = `<path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>`;
-      }
-    });
+class CrepeEditor extends LitElement {
+  static properties = {
+    value: { type: String }
+  };
 
-    // Copy source to clipboard
-    const sourceTextarea = document.getElementById('markdown-source');
-    const copyBtn = document.getElementById('copy-source');
-    copyBtn.addEventListener('click', () => {
-      sourceTextarea.select();
-      navigator.clipboard.writeText(sourceTextarea.value);
-      const originalText = copyBtn.innerText;
-      copyBtn.innerText = 'Copied!';
-      copyBtn.classList.add('btn-primary');
-      setTimeout(() => {
-        copyBtn.innerText = originalText;
-        copyBtn.classList.remove('btn-primary');
-      }, 1500);
-    });
+  createRenderRoot() {
+    return this; // Light DOM so global CSS themes apply
+  }
 
-    // Export markdown file
-    document.getElementById('export-md').addEventListener('click', () => {
-      const markdown = sourceTextarea.value;
-      const blob = new Blob([markdown], { type: 'text/markdown;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = 'milkdown-document.md';
-      link.click();
-      URL.revokeObjectURL(url);
-    });
+  async firstUpdated() {
+    const container = this.querySelector('.crepe-container');
+    if (!container) return;
 
-    // Default content
-    const defaultContent = `# 🌌 Welcome to Milkdown Zero
-
-A premium, no-build Markdown editing experience powered by Milkdown ESM bundles, served instantly to your browser.
-
-## 🚀 Key Features
-
-1. **Zero Build Tools**: Loads directly using native browser ES Modules and Import Maps.
-2. **Cohesive Bundle Splitting**: Shared dependencies are extracted into a common chunk (\`shared-[hash].js\`) to prevent module duplication.
-3. **GFM Support**: Out-of-the-box task lists, tables, strikethrough, and autolinks.
-4. **Distraction-Free Design**: Focus on your content with our sleek glassmorphism dashboard.
-
-## 📝 Live Formatting Sandbox
-
-Feel free to write and edit this text. Here is a quick showcase of supported Markdown constructs:
-
-### Code Snippets
-Here's a JavaScript example:
-
-\`\`\`javascript
-import { Editor } from '@milkdown/kit/core';
-import { commonmark } from '@milkdown/kit/preset/commonmark';
-
-Editor.make()
-  .use(commonmark)
-  .create();
-\`\`\`
-
-### Rich Blockquotes
-> "Simplicity is the ultimate sophistication."
-> — Leonardo da Vinci
-
-### Task Lists
-- [x] Pre-bundle Milkdown with Rollup
-- [x] Configure Import Maps in HTML
-- [x] Verify no-build runtime resolution
-- [ ] Share with colleagues
-
----
-
-*Enjoy a clean, fast, and modern editing workflow.*`;
-
-    // Dynamic Outline builder helper
-    function updateOutline() {
-      const editorElement = document.querySelector('.ProseMirror');
-      if (!editorElement) return;
-
-      const headings = editorElement.querySelectorAll('h1, h2, h3');
-      const outlineContainer = document.getElementById('outline-toc');
-      outlineContainer.innerHTML = '';
-      
-      if (headings.length === 0) {
-        outlineContainer.innerHTML = `<li style="font-size: 0.85rem; color: var(--muted-text); font-style: italic;">No headers found...</li>`;
-        return;
-      }
-
-      headings.forEach((heading, idx) => {
-        // Assign a unique ID to scroll to it
-        const headerId = `heading-node-${idx}`;
-        heading.id = headerId;
-
-        const li = document.createElement('li');
-        li.className = `outline-item ${heading.tagName.toLowerCase()}`;
-        li.innerText = heading.innerText || heading.textContent;
-        li.title = li.innerText;
-        
-        li.addEventListener('click', () => {
-          heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          // Highlight target briefly
-          heading.style.transition = 'background-color 0.5s ease';
-          heading.style.backgroundColor = 'rgba(99, 102, 241, 0.15)';
-          setTimeout(() => {
-            heading.style.backgroundColor = 'transparent';
-          }, 1000);
-        });
-        outlineContainer.appendChild(li);
-      });
-    }
-
-    // Word/Char count helpers
-    function updateCounts(markdown) {
-      const text = markdown.trim();
-      const words = text ? text.split(/\s+/).filter(w => w.length > 0).length : 0;
-      const chars = markdown.length;
-      
-      document.getElementById('word-count').innerText = words.toLocaleString();
-      document.getElementById('char-count').innerText = chars.toLocaleString();
-    }
-
-    // Initialize Milkdown Editor
     try {
-      const editor = await Editor.make()
-        .config((ctx) => {
-          ctx.set(rootCtx, document.getElementById('editor-container'));
-          ctx.set(defaultValueCtx, defaultContent);
-          
-          // Configure listener
-          ctx.get(listenerCtx)
-            .markdownUpdated((ctx, markdown) => {
-              sourceTextarea.value = markdown;
-              updateCounts(markdown);
-              updateOutline();
-            })
-            .mounted((ctx) => {
-              // Get current content and set initial states
-              const markdown = sourceTextarea.value;
-              updateOutline();
-              // Trigger outline render check after mounting
-              setTimeout(updateOutline, 100);
-            });
-        })
-        .use(commonmark)
-        .use(gfm)
-        .use(history)
-        .use(listener)
-        .create();
-        
-      console.log("Milkdown Editor mounted successfully!");
+      this.crepe = new Crepe({
+        root: container,
+        defaultValue: this.value || ''
+      });
+
+      // Dispatch changes to the parent element
+      this.crepe.on((listener) => {
+        listener.markdownUpdated((ctx, markdown) => {
+          this.dispatchEvent(new CustomEvent('change', {
+            detail: { value: markdown },
+            bubbles: true,
+            composed: true
+          }));
+        });
+      });
+
+      this.editor = await this.crepe.create();
     } catch (err) {
-      console.error("Failed to load Milkdown Editor:", err);
-      document.getElementById('editor-container').innerHTML = `
-        <div style="padding: 2rem; color: #f43f5e; font-family: sans-serif;">
-          <h3>Failed to mount editor</h3>
-          <p>${err.message}</p>
-        </div>
-      `;
+      console.error("Failed to initialize Crepe editor:", err);
     }
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    if (this.editor) {
+      this.editor.destroy();
+    }
+  }
+
+  render() {
+    return html`<div class="crepe-container"></div>`;
+  }
+}
+customElements.define('crepe-editor', CrepeEditor);
+
+    // ---- 1. Lit, loaded straight from a CDN. No npm, no bundler. ----
+    import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
+
+    // ---- 2. Shared state: a tiny pub-sub store, framework-agnostic. ----
+    // Any component can import `store` and call store.subscribe(fn).
+    // This is the whole "state management" layer for a small app —
+    // swap for something bigger only if you actually need it.
+    class Store extends EventTarget {
+      #state = { 
+          count: 0
+        , name: ''
+        , markdownContent: '# Welcome to Creape\n\nEdit this side-by-side!'
+    };
+
+      get state() { return this.#state; }
+
+      set(partial) {
+        this.#state = { ...this.#state, ...partial };
+        this.dispatchEvent(new Event('change'));
+      }
+
+      subscribe(fn) {
+        this.addEventListener('change', fn);
+        return () => this.removeEventListener('change', fn);
+      }
+    }
+    const store = new Store();
+
+    // ---- 3. A reusable mixin so components re-render on store changes ----
+    // (Optional pattern — you could also just call store.subscribe in connectedCallback)
+    const StoreConsumer = (Base) => class extends Base {
+      connectedCallback() {
+        super.connectedCallback();
+        this._unsub = store.subscribe(() => this.requestUpdate());
+      }
+      disconnectedCallback() {
+        this._unsub?.();
+        super.disconnectedCallback();
+      }
+    };
+
+    // ---- 4. A minimal client-side router using the native History API ----
+    // No dependency — ~20 lines gets you push-state routing.
+    class Router extends EventTarget {
+      constructor(routes) {
+        super();
+        this.routes = routes; // { '/': 'home-view', '/about': 'about-view' }
+        window.addEventListener('popstate', () => this._notify());
+      }
+      navigate(path) {
+        if (path === location.pathname) return;
+        history.pushState({}, '', path);
+        this._notify();
+      }
+      _notify() {
+        this.dispatchEvent(new Event('navigate'));
+      }
+      get current() {
+        return this.routes[location.pathname] ?? this.routes['/404'];
+      }
+    }
+    const router = new Router({
+      '/': 'home-view',
+      '/about': 'about-view',
+      '/editor': 'editor-view',
+      '/404': 'notfound-view',
+    });
+
+    // ---- 5. Views: plain LitElement components ----
+
+class EditorView extends StoreConsumer(LitElement) {
+  createRenderRoot() { return this; }
+
+  handleEditorChange(e) {
+    store.set({ markdownContent: e.detail.value });
+  }
+
+  render() {
+    const { markdownContent } = store.state;
+    return html`
+      <div class="workspace-container">
+        <!-- Editor Panel -->
+        <div class="workspace-panel">
+          <h2>Editor</h2>
+          <crepe-editor 
+            .value=${markdownContent} 
+            @change=${this.handleEditorChange}
+          ></crepe-editor>
+        </div>
+
+        <!-- Render/Preview Panel -->
+        <div class="workspace-panel">
+          <h2>Markdown Output</h2>
+          <textarea class="raw-preview" readonly>${markdownContent}</textarea>
+        </div>
+      </div>
+    `;
+  }
+}
+customElements.define('editor-view', EditorView);
+
+    class HomeView extends StoreConsumer(LitElement) {
+      // Light DOM (no shadow root) keeps global CSS above working as-is.
+      // Use shadow DOM instead once components need real style encapsulation.
+      createRenderRoot() { return this; }
+
+      render() {
+        const { count, name } = store.state;
+        return html`
+          <div class="card">
+            <h2>Home</h2>
+            <p>Shared state lives in one place; any component can read/write it.</p>
+            <p>Count: <strong>${count}</strong></p>
+            <button @click=${() => store.set({ count: count + 1 })}>
+              Increment
+            </button>
+            <p style="margin-top:1rem">
+              <input
+                placeholder="Type your name"
+                .value=${name}
+                @input=${(e) => store.set({ name: e.target.value })}
+              />
+            </p>
+            ${name ? html`<p>Hello, ${name} 👋</p>` : ''}
+          </div>
+        `;
+      }
+    }
+    customElements.define('home-view', HomeView);
+
+    class AboutView extends LitElement {
+      createRenderRoot() { return this; }
+      render() {
+        return html`
+          <div class="card">
+            <h2>About</h2>
+            <p>This view is a separate Custom Element, loaded by the router.
+               Each view is just a class — no framework-specific file format.</p>
+          </div>
+        `;
+      }
+    }
+    customElements.define('about-view', AboutView);
+
+    class NotFoundView extends LitElement {
+      createRenderRoot() { return this; }
+      render() {
+        return html`<div class="card"><h2>404</h2><p>Nothing here.</p></div>`;
+      }
+    }
+    customElements.define('notfound-view', NotFoundView);
+
+    // ---- 6. The app shell: nav + outlet, listens to the router ----
+    class AppRouter extends LitElement {
+      createRenderRoot() { return this; }
+
+      connectedCallback() {
+        super.connectedCallback();
+        router.addEventListener('navigate', () => this.requestUpdate());
+
+        // Intercept clicks on internal links so they don't full-reload the page
+        this.addEventListener('click', (e) => {
+          const a = e.target.closest('a[data-link]');
+          if (!a) return;
+          e.preventDefault();
+          router.navigate(a.getAttribute('href'));
+        });
+      }
+
+      render() {
+        // lit-html can't interpolate a tag *name* directly (`<${view}>` isn't valid),
+        // so build the element imperatively and pass it in as a value instead.
+        const el = document.createElement(router.current);
+
+        return html`
+          <header>
+            <a data-link href="/" class=${location.pathname === '/' ? 'active' : ''}>Home</a>
+            <a data-link href="/editor" class=${location.pathname === '/editor' ? 'active' : ''}>Editor</a>
+            <a data-link href="/about" class=${location.pathname === '/about' ? 'active' : ''}>About</a>
+          </header>
+          <main>${el}</main>
+        `;
+      }
+    }
+    customElements.define('app-router', AppRouter);
   </script>
 </body>
 </html>

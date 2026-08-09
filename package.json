@@ -4,8 +4,10 @@
   "description": "Pre-bundled Milkdown ESM files for no-build projects",
   "type": "module",
   "scripts": {
-    "build": "rollup -c rollup.config.mjs && node copy-css.js && node post-build-replace.js",
-    "start": "bun run server.js"
+    "build:js": "rollup -c",
+    "build:css": "node copy-css.js",
+    "postbuild:css": "node post-build-css-replace.js",
+    "build": "npm run build:js && npm run build:css && npm run postbuild:css"
   },
   "dependencies": {
     "@milkdown/crepe": "^7.22.0",
