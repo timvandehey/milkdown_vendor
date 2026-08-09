@@ -282,7 +282,9 @@ class EditorView extends StoreConsumer(LitElement) {
   createRenderRoot() { return this; }
 
   handleEditorChange(e) {
-    store.set({ markdownContent: e.detail.value });
+    if (e.detail && typeof e.detail.value === 'string') {
+      store.set({ markdownContent: e.detail.value });
+    }
   }
 
   render() {
