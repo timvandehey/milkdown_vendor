@@ -50,34 +50,31 @@ if (fs.existsSync(crepeThemeSrc)) {
 // 2. Copy individual CSS files (no transformation needed)
 const proseFiles = [
   {
-    srcDir: 'node_modules/@milkdown/kit/lib',
-    files: [
-      'prose/gapcursor/style/gapcursor.css',
-      'prose/view/style/prosemirror.css',
-      'prose/tables/style/tables.css',
-    ],
+    src: 'node_modules/@milkdown/prose/lib/style/gapcursor.css',
+    dest: 'dist/prose/gapcursor/style/gapcursor.css',
   },
   {
-    srcDir: 'node_modules/prosemirror-virtual-cursor',
-    files: ['style/virtual-cursor.css'],
+    src: 'node_modules/@milkdown/prose/lib/style/prosemirror.css',
+    dest: 'dist/prose/view/style/prosemirror.css',
   },
   {
-    srcDir: 'node_modules/katex/dist',
-    files: ['katex.min.css'],
+    src: 'node_modules/@milkdown/prose/lib/style/tables.css',
+    dest: 'dist/prose/tables/style/tables.css',
+  },
+  {
+    src: 'node_modules/prosemirror-virtual-cursor/style/virtual-cursor.css',
+    dest: 'dist/style/virtual-cursor.css',
+  },
+  {
+    src: 'node_modules/katex/dist/katex.min.css',
+    dest: 'dist/katex.min.css',
   },
 ];
 
-const proseDestDir = 'dist';
-
-for (const { srcDir, files } of proseFiles) {
-  for (const file of files) {
-    const src = path.join(srcDir, file);
-    const dest = path.join(proseDestDir, file);
-
-    fs.mkdirSync(path.dirname(dest), { recursive: true });
-    fs.copyFileSync(src, dest);
-    console.log(`Copied ${src} -> ${dest}`);
-  }
+for (const { src, dest } of proseFiles) {
+  fs.mkdirSync(path.dirname(dest), { recursive: true });
+  fs.copyFileSync(src, dest);
+  console.log(`Copied ${src} -> ${dest}`);
 }
 
 console.log('CSS build finished.');
