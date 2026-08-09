@@ -20,6 +20,23 @@ function copyAndTransformDir(src, dest, transform) {
   }
 }
 
+// Helper to recursively copy directories
+function copyDirRecursive(src, dest) {
+  fs.mkdirSync(dest, { recursive: true });
+  const entries = fs.readdirSync(src, { withFileTypes: true });
+
+  for (const entry of entries) {
+    const srcPath = path.join(src, entry.name);
+    const destPath = path.join(dest, entry.name);
+
+    if (entry.isDirectory()) {
+      copyDirRecursive(srcPath, destPath);
+    } else if (entry.isFile()) {
+      fs.copyFileSync(srcPath, destPath);
+    }
+  }
+}
+
 // --- Main script ---
 
 // 1. Copy and transform @milkdown/crepe themes
@@ -75,6 +92,15 @@ for (const { src, dest } of proseFiles) {
   fs.mkdirSync(path.dirname(dest), { recursive: true });
   fs.copyFileSync(src, dest);
   console.log(`Copied ${src} -> ${dest}`);
+}
+
+// 3. Copy KaTeX fonts recursively
+const katexFontsSrc = 'node_modules/katex/dist/fonts';
+const katexFontsDest = 'dist/fonts';
+
+if (fs.existsSync(katexFontsSrc)) {
+  copyDirRecursive(katexFontsSrc, katexFontsDest);
+  console.log(`Copied KaTeX fonts from ${katexFontsSrc} -> ${katexFontsDest}`);
 }
 
 console.log('CSS build finished.');
